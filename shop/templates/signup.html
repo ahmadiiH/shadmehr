@@ -7,29 +7,29 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">وارد شوید</h1>
+                    <h1 class="display-4 fw-bolder">ثبت نام کنید </h1>
                     <p class="lead fw-normal text-white-50 mb-0">اینجا همه چی حراجه</p>
                 </div>
             </div>
         </header>
-        <div class="container my-5">
+        <div class="container my-5 mx-auto">
             <div class="row">
                
                     
                     <div class="col-6 mx-auto">
-                        <form method="post" action="{% url 'login' %}">
+                        <form method="post" action="{% url 'signup' %}">
                             {% csrf_token %}
-                            <div class="mb-3">
-                              <input type="text" class="form-control" name="username" placeholder="نام کاربری را وارد کنید">
+                            {{ form.as_p }}
+                            <br>
+                            <div style="display: flex; justify-content: center;">
+                                <button type="submit" class="btn btn-secondary   " style="justify-content: center;display: flex;"> ثبت نام</button>
+
                             </div>
-                            <div class="mb-3">
-                              <input type="password" class="form-control" name="password" placeholder="رمز خود را وارد کنید">
-                            </div>
-                            <button type="submit" class="btn btn-secondary">وارد شدن</button>
                           </form>
                     </div>
 
-               
+        
+              
 
               
             </div>
