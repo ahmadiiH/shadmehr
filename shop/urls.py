@@ -1,9 +1,10 @@
 
 from django.urls import path
-from .views import helloworld
+from .views import helloworld,about
 
 
 urlpatterns = [
-    path('', helloworld ),
+    path('', helloworld,name="home" ),
+    path('about/', about , name="about" ),
     
 ]
