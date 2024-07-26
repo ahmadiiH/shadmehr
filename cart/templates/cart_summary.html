@@ -49,6 +49,8 @@
 
                        <div class="">
                         <button class="btn btn-primary px-5 update-cart" type="button" data-index = {{product.id}}  id=""> ویرایش</button>
+                        <button class="btn btn-danger px-5 delete-product" type="button" data-index = {{product.id}}  id=""> حذف</button>
+
                       <a class="link text-decoration-none btn btn-secondary " href="{% url 'home' %}">بازگشت به صفحه اصلی</a>
 
                       </div>
@@ -71,13 +73,33 @@
     <script>
       $(document).on('click', '.update-cart', function(e) {
         e.preventDefault();
-        var productid = $(this).data('index')
+        var productid = $(this).data('index');
         $.ajax({
           type: "POST",
           url: "{% url 'cart_update' %}",
           data: {
-            product_id: $(this).data('index'),
-            product_qty: $('#select'+productid+' option:selected').text(),
+            product_id: productid,
+            product_qty: $('#select' + productid + ' option:selected').text(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            action: 'post'
+          },
+          success: function(json) {
+            location.reload();
+          },
+          error: function(xhr, errmsg, err) {
+            console.error(xhr.status + ": " + xhr.responseText);
+          }
+        });
+      });
+    
+      $(document).on('click', '.delete-product', function(e) {
+        e.preventDefault();
+        var productid = $(this).data('index');
+        $.ajax({
+          type: "POST",
+          url: "{% url 'cart_delete' %}",
+          data: {
+            product_id: productid,
             csrfmiddlewaretoken: '{{ csrf_token }}',
             action: 'post'
           },
@@ -90,7 +112,7 @@
         });
       });
     </script>
-
+    
     
 
 
