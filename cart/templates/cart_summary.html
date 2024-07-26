@@ -32,6 +32,22 @@
                       {% else %}
                       <h5 class="card-title "> {{ product.price | intcomma }}</h5>
                       {% endif %}
+
+                      <h5 class="card-title "> تعداد :
+
+                      {% for key,value in quantities.items %}
+                      {% if key == product.id|slugify %}
+                      {{ value }}
+                      {% endif %}
+
+
+
+
+                      {% endfor %}
+                      </h5>
+
+                      
+                     
                       <div class="">
                       <a class="link text-decoration-none btn btn-secondary " href="{% url 'home' %}">بازگشت به صفحه اصلی</a>
 
@@ -53,6 +69,7 @@
         </div>
         <br><br><br><br><br><br>
     {% endif %}
+
 
       
 

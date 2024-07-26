@@ -21,6 +21,16 @@
                       {% else %}
                       <h5 class="card-title "> {{ product.price | intcomma }}</h5>
                       {% endif %}
+                      <div>
+                        <label for="select">تعداد : </label>
+                        <select class="form-select"  name="select" id="cart-qty">
+                          
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </select>
+    
+                      </div>
                       <div class="">
                         <button class="btn btn-secondary" type="button" value="{{ product.id }}" id="add-cart">اضافه کردن به سبد خرید </button>
                       <a class="link text-decoration-none btn btn-secondary " href="{% url 'home' %}">بازگشت به صفحه اصلی</a>
@@ -44,6 +54,7 @@
               url: "{% url 'cart_add' %}",
               data: {
                 product_id: $('#add-cart').val(),
+                product_qty: $('#cart-qty option:selected' ).text(),
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 action: 'post'
               },
